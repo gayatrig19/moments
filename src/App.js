@@ -13,6 +13,7 @@ import { useCurrentUser } from './contexts/CurrentUserContext';
 function App() {
   const currentUser = useCurrentUser();
   const profile_id = currentUser?.profile_id || "";
+  
   return (
     <div className={styles.App}>
       <NavBar />

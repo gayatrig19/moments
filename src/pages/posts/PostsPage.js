@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+
 import Post from "./Post";
 import Asset from "../../components/Asset";
 
@@ -26,20 +27,21 @@ function PostsPage({ message, filter = "" }) {
 
   useEffect(() => {
     const fetchPosts = async () => {
-        try {
-            const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
-            setPosts(data);
-            setHasLoaded(true);
-        } catch (err) {
-            console.log(err);
-        }
-    }
+      try {
+        const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
+        setPosts(data);
+        setHasLoaded(true);
+      } catch (err) {
+        console.log(err);
+      }
+    };
     setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchPosts();
     }, 1000);
+    
     return () => {
-        clearTimeout(timer);
+      clearTimeout(timer);
     };
   }, [filter, query, pathname]);
 
